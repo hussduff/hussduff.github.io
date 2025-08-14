@@ -1,23 +1,32 @@
-/* --- Global Styles & Spider-Man Theme --- */
+/* --- V2 CSS: Animated & Attractive Spider-Man Theme --- */
 :root {
-    --bg-color: #0f172a; /* Deep, dark blue */
-    --primary-text: #e2e8f0; /* Off-white for readability */
-    --spider-red: #de0606;
-    --spider-blue: #007fd7;
-    --card-bg: #1e293b; /* Slightly lighter card background */
-    --border-color: #334155;
-    --font-heading: 'Orbitron', sans-serif; /* Techy, modern font */
+    --bg-color: #020617; /* Even darker space blue */
+    --primary-text: #e2e8f0;
+    --spider-red: #ef4444; /* Brighter, more vibrant red */
+    --spider-blue: #38bdf8; /* Lighter, electric blue */
+    --card-bg: rgba(30, 41, 59, 0.7); /* RGBA for glass effect */
+    --border-color: rgba(51, 65, 85, 0.7);
+    --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Roboto', sans-serif;
 }
 
+/* --- Animated Gradient Background --- */
 body {
     background-color: var(--bg-color);
-    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%231e293b" fill-opacity="0.2"%3E%3Cpath d="M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    background: linear-gradient(315deg, rgba(2,6,23,1) 0%, rgba(8,23,54,1) 50%, rgba(30,41,59,1) 100%);
+    background-size: 200% 200%;
+    animation: gradient-animation 15s ease infinite;
     font-family: var(--font-body);
     color: var(--primary-text);
     line-height: 1.6;
     margin: 0;
     padding: 20px;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -26,94 +35,113 @@ body {
     padding: 2rem;
 }
 
+/* --- Glassmorphism Cards & Enhanced Glows --- */
+section, footer, header {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(56,189,248,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover, footer:hover, header:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(56,189,248,0.1), inset 0 0 20px rgba(56,189,248,0.1);
+}
+
+/* --- Animated Headers --- */
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     color: white;
-    text-shadow: 0 0 5px var(--spider-blue);
 }
 
-h1 { font-size: 2.5rem; margin-bottom: 0.2rem; }
-h2 { font-size: 1.2rem; color: var(--spider-blue); margin-top:0; font-weight: 400; }
-h3 { font-size: 1.8rem; border-bottom: 2px solid var(--spider-red); padding-bottom: 10px; margin-top: 3rem; }
-
-section, footer, header {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.2rem;
+    font-weight: 700;
+    /* Shimmer effect */
+    color: transparent;
+    background: linear-gradient(90deg, #dbeafe, #fff, #dbeafe);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shimmer 5s linear infinite;
 }
 
-header {
-    text-align: center;
-    border-bottom: 4px solid var(--spider-red);
+@keyframes shimmer {
+    to { background-position: -200% center; }
 }
 
-/* --- Skills Section --- */
+h2 {
+    font-size: 1.2rem;
+    color: var(--spider-blue);
+    margin-top:0;
+    font-weight: 400;
+    text-shadow: 0 0 10px var(--spider-blue);
+}
+h3 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--spider-red);
+    padding-bottom: 10px;
+    margin-top: 3rem;
+    text-shadow: 0 0 8px var(--spider-red);
+}
+
+header { text-align: center; }
+
+/* --- Interactive Skills Section --- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
 }
-.skill-category h4 {
-    color: var(--spider-blue);
-    margin-bottom: 0.5rem;
-}
-.skills-grid ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+.skill-category h4 { color: var(--spider-blue); margin-bottom: 0.5rem; }
+.skills-grid ul { list-style: none; padding: 0; margin: 0; }
 .skills-grid li {
     background-color: var(--bg-color);
     padding: 8px 12px;
     border-radius: 5px;
     margin-bottom: 8px;
     border-left: 3px solid var(--spider-red);
+    transition: all 0.3s ease;
+}
+.skills-grid li:hover {
+    transform: translateX(5px) scale(1.03);
+    color: white;
+    background-color: var(--spider-red);
+    border-left-color: white;
 }
 
-/* --- Contact & Links --- */
-footer {
-    text-align: center;
-}
+/* --- Glowing Contact Buttons --- */
+footer { text-align: center; }
 .contact-links a {
     display: inline-block;
     color: white;
     background-color: var(--spider-red);
-    padding: 10px 25px;
+    padding: 12px 30px;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
     transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
 }
 .contact-links a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(222, 6, 6, 0.4);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.7);
+    background-color: #f87171; /* Lighter red on hover */
 }
-.placeholder {
-    font-style: italic;
-    color: #94a3b8; /* Lighter grey for placeholder */
-}
+.placeholder { font-style: italic; color: #94a3b8; }
 
-/* --- Animation --- */
+/* --- General Fade-in Animation --- */
 .fade-in {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInAnimation 0.8s ease-out forwards;
+    animation: fadeInAnimation 1s ease-out forwards;
 }
-
 @keyframes fadeInAnimation {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-section, footer {
-    animation-delay: 0.2s; /* Stagger the animation slightly */
+    to { opacity: 1; }
 }
